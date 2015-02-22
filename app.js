@@ -1,53 +1,49 @@
-// Express.js + socket.io
-
-// Dependencies setup
 var express = require('express');
 var path = require('path');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-//var bodyParser = require('body-parser');
-var debug = require('debug')('generated-express-app');
+var bodyParser = require('body-parser');
+var debug = require('debug')('generator-ejs:server');
+
 var routes = require('./routes/index');
+var users = require('./routes/users');
 
-// Server setup
 var app = express();
-app.set('port', process.env.PORT || 3000);
-var server = app.listen(app.get('port'), function() {
-    debug('Express server listening on port ' + server.address().port);
-});
-
-// Include routes
-app.use('/', routes);
-
-// Socket.io
-var io = require('socket.io').listen(server);
-io.sockets.on('connection', function (socket) {
-    console.log('IO Connected (bottom)');
-});
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// Middlewares
+// uncomment after placing your favicon in /public
+//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Requests
-/*app.get('/', function (req, res) {
-    res.render('index', { title: 'Express' });
-});
-*/
+app.use('/', routes);
+app.use('/users', users);
 
-/// catch 404 and forward to error handler
+
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
+});
+
+// setup server
+app.set('port', process.env.PORT || 3000);
+var server = app.listen(app.get('port'), function() {
+    debug('Express server listening on port ' + server.address().port);
+});
+
+// Socket.io
+var io = require('socket.io').listen(server);
+io.sockets.on('connection', function (socket) {
+    debug('Socket.io user connected');
 });
 
 /// error handlers

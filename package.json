@@ -1,5 +1,5 @@
 {
-  "name": "testEJS",
+  "name": "generator-ejs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
