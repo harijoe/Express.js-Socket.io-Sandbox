@@ -19,4 +19,5 @@ Contains the same stuff as what `express newProject` would generate, with socket
 `npm start`
 
 Try to connect to `http://localhost:3000/`.
+
 `generator-ejs:server Socket.io user connected` should appear in the console.
