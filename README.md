@@ -21,3 +21,6 @@ Contains the same stuff as what `express newProject` would generate, with socket
 Try to connect to `http://localhost:3000/`.
 
 `generator-ejs:server Socket.io user connected` should appear in the console.
+
+## External links
+This implementation is based on the following answer : <http://stackoverflow.com/a/24222869/3774551>
