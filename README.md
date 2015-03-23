@@ -1,4 +1,5 @@
 # Express.js-Socket.io-Sandbox
+[![Build Status](https://travis-ci.org/harijoe/Express.js-Socket.io-Sandbox.svg?branch=master)](https://travis-ci.org/harijoe/Express.js-Socket.io-Sandbox.svg?branch=master)
 
 ## Motivation
 The installation of a new Express.js 4 application is not behaving well with the socket.io package. Therefore, this repo can be used as a working starting point of any Express.js + socket.io project.
